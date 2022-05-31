@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="peregoncevKP" Class="StatementDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=wsr;Initial Catalog=peregoncevKP;User ID=peregoncevKP" SettingsObjectName="students.Properties.Settings" SettingsPropertyName="peregoncevKPConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Statements" Member="Statements">
+    <Type Name="Statements">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FullName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Speciality" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Course" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MinScore" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AverageScore" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DoubledGrant" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

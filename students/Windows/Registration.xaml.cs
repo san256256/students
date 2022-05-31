@@ -1,14 +1,26 @@
-﻿using System;
+﻿using students.DataContexts;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
-namespace students
+namespace students.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для Registration.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Registration : Window
     {
-        public MainWindow()
+        public Registration()
         {
             InitializeComponent();
         }
@@ -58,20 +70,16 @@ namespace students
 
                 if ((k >= 1) && (Password.Text.Length >= 6) && (u >= 1) && (b >= 1))
                 {
-                    using (DataContext db = new DataContext(Properties.Settings.Default.peregoncevKPConnectionString))
+                    using (var db = new UserDataContext(Properties.Settings.Default.peregoncevKPConnectionString))
                     {
-                        DataClasses3DataContext dv = new DataClasses3DataContext();
                         string log = login.Text;
                         string pas = Password.Text;
                         string fio = FIO.Text;
-                        user user = new user();
-                        user.Login = log;
-                        user.Password = pas;
-                        db.GetTable<user>().InsertOnSubmit(user);
-                        db.SubmitChanges();
+                        var newUser = new USERS { fio = FIO.Text, Login = login.Text, password = Password.Text };
+                        db.USERS.InsertOnSubmit(newUser);
                         MessageBox.Show("Пользователь добавлен");
-                        MainWindow Авторизация = new MainWindow();
-                        Авторизация.Show();
+                        var authoriz = new Authorization();
+                        authoriz.Show();
                         Close();
                     }
                 }
@@ -89,7 +97,7 @@ namespace students
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow Авторизация = new MainWindow();
+            Registration Авторизация = new Registration();
             Авторизация.Show();
             Close();
         }
