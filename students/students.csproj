@@ -62,10 +62,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Exam.dbml</DependentUpon>
     </Compile>
-    <Compile Include="DataContexts\Statement.designer.cs">
+    <Compile Include="DataContexts\Grant.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Statement.dbml</DependentUpon>
+      <DependentUpon>Grant.dbml</DependentUpon>
     </Compile>
     <Compile Include="DataContexts\Student.designer.cs">
       <AutoGen>True</AutoGen>
@@ -121,7 +121,7 @@
       <DependentUpon>Student.dbml</DependentUpon>
     </None>
     <None Include="DataContexts\Statement.dbml.layout">
-      <DependentUpon>Statement.dbml</DependentUpon>
+      <DependentUpon>Grant.dbml</DependentUpon>
     </None>
     <None Include="DataContexts\Exam.dbml.layout">
       <DependentUpon>Exam.dbml</DependentUpon>
@@ -135,9 +135,9 @@
       <LastGenOutput>Exam.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="DataContexts\Statement.dbml">
+    <None Include="DataContexts\Grant.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>Statement.designer.cs</LastGenOutput>
+      <LastGenOutput>Grant.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="DataContexts\Student.dbml">

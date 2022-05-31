@@ -22,7 +22,7 @@ namespace students.DataContexts
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="peregoncevKP")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name= "shashaHelp")]
 	public partial class StudentDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -36,7 +36,7 @@ namespace students.DataContexts
     #endregion
 		
 		public StudentDataContext() : 
-				base(global::students.Properties.Settings.Default.peregoncevKPConnectionString1, mappingSource)
+				base(global::students.Properties.Settings.Default.devConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -84,7 +84,7 @@ namespace students.DataContexts
 		
 		private string _FullName;
 		
-		private string _Male;
+		private string _Gender;
 		
 		private System.Nullable<int> _Course;
 		
@@ -159,20 +159,20 @@ namespace students.DataContexts
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Male", DbType="VarChar(50)")]
-		public string Male
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="VarChar(50)")]
+		public string Gender
 		{
 			get
 			{
-				return this._Male;
+				return this._Gender;
 			}
 			set
 			{
-				if ((this._Male != value))
+				if ((this._Gender != value))
 				{
 					this.OnMaleChanging(value);
 					this.SendPropertyChanging();
-					this._Male = value;
+					this._Gender = value;
 					this.SendPropertyChanged("Male");
 					this.OnMaleChanged();
 				}

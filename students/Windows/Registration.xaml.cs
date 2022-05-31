@@ -70,13 +70,14 @@ namespace students.Windows
 
                 if ((k >= 1) && (Password.Text.Length >= 6) && (u >= 1) && (b >= 1))
                 {
-                    using (var db = new UserDataContext(Properties.Settings.Default.peregoncevKPConnectionString))
+                    using (var db = new UserDataContext(Properties.Settings.Default.devConnectionString))
                     {
                         string log = login.Text;
                         string pas = Password.Text;
                         string fio = FIO.Text;
-                        var newUser = new USERS { fio = FIO.Text, Login = login.Text, password = Password.Text };
+                        var newUser = new USERS { fio = FIO.Text, Login = login.Text, password = Password.Text, role = cmbRole.SelectedItem.ToString() };
                         db.USERS.InsertOnSubmit(newUser);
+                        db.SubmitChanges();
                         MessageBox.Show("Пользователь добавлен");
                         var authoriz = new Authorization();
                         authoriz.Show();
@@ -97,8 +98,8 @@ namespace students.Windows
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Registration Авторизация = new Registration();
-            Авторизация.Show();
+            Registration authorization = new Registration();
+            authorization.Show();
             Close();
         }
     }

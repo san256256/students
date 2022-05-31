@@ -16,38 +16,42 @@
                 <TabItem.Content>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="13*"/>
-                            <ColumnDefinition Width="78*"/>
-                            <ColumnDefinition Width="928*"/>
+                            <ColumnDefinition Width="7*"/>
+                            <ColumnDefinition Width="41*"/>
+                            <ColumnDefinition Width="403*"/>
+                            <ColumnDefinition Width="84*"/>
                         </Grid.ColumnDefinitions>
-                        <DataGrid AutoGenerateColumns="false" x:Name="uslygi" Margin="10,10,0,0" HorizontalAlignment="Left" Width="701" Height="312" VerticalAlignment="Top" IsReadOnly="True" Grid.ColumnSpan="3">
+                        <DataGrid AutoGenerateColumns="false" x:Name="DGStatements" 
+                                  Margin="10,10,0,0" HorizontalAlignment="Left" 
+                                  Width="701" Height="312" VerticalAlignment="Top" 
+                                  IsReadOnly="True" Grid.ColumnSpan="3">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{Binding id_Vedomost}" Header="Код" Width="60"/>
-                                <DataGridTextColumn Binding="{Binding FIOVd}" Header="ФИО" Width="*"/>
-                                <DataGridTextColumn Binding="{Binding Spec}" Header="Специальность" Width="*"/>
-                                <DataGridTextColumn Binding="{Binding Kyrs}" Header="Курс" Width="50"/>
-                                <DataGridTextColumn Binding="{Binding Minball}" Header="Мин.Балл" Width="70"/>
-                                <DataGridTextColumn Binding="{Binding MidBall}" Header="Средний Балл" Width="*"/>
-                                <DataGridTextColumn Binding="{Binding YdbStp}" Header="Удвоенная степендия" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding Id}" Header="Код" Width="60"/>
+                                <DataGridTextColumn Binding="{Binding FullName}" Header="ФИО" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding Speciality}" Header="Специальность" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding Course}" Header="Курс" Width="50"/>
+                                <DataGridTextColumn Binding="{Binding MinScore}" Header="Мин.Балл" Width="70"/>
+                                <DataGridTextColumn Binding="{Binding AverageScore}" Header="Средний Балл" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding DoubledGrant}" Header="Удвоенная степендия" Width="*"/>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <Button Content="Удалить" HorizontalAlignment="Left" Width="101" x:Name="udal"  Margin="761,318,0,0" Height="30" VerticalAlignment="Top" Grid.Column="2"  />
-                        <Button Content="Отмена" HorizontalAlignment="Left" Width="104" x:Name="Otmena" Margin="638,278,0,0" Height="30" VerticalAlignment="Top" IsEnabled="False" Grid.Column="2" />
-                        <Button Content="Редактировать" HorizontalAlignment="Left" Width="101" x:Name="red"  Margin="642,321,0,0" Height="30" VerticalAlignment="Top" Grid.Column="2" />
-                        <Button Content="Добавить " HorizontalAlignment="Right" Width="243" x:Name="Novusl"  Margin="0,13,57,303" Grid.Column="2"/>
-                        <Button Content="ОК" HorizontalAlignment="Left" Width="104" x:Name="Ok" Margin="761,280,0,0" Height="30" VerticalAlignment="Top" IsEnabled="False" Grid.Column="2"/>
+                        <Button Content="Удалить" HorizontalAlignment="Left" Width="101" x:Name="btnDeleteGrant"  Margin="761,318,0,0" Height="30" VerticalAlignment="Top" Grid.Column="2" Grid.ColumnSpan="2"  />
+                        <Button Content="Отмена" HorizontalAlignment="Left" Click="btnCancelGrant_Click" Width="104" x:Name="btnCancelGrant" Margin="638,278,0,0" Height="30" VerticalAlignment="Top" IsEnabled="False" Grid.Column="2" />
+                        <Button Content="Редактировать" HorizontalAlignment="Left" Width="101" x:Name="btnEditGrant"  Margin="642,321,0,0" Height="30" VerticalAlignment="Top" Grid.Column="2" />
+                        <Button Content="Добавить" HorizontalAlignment="Right" Width="243" x:Name="btnAddGrant"  Margin="0,13,57,303" Grid.Column="2" Grid.ColumnSpan="2" Click="btnAddGrant_Click"/>
+                        <Button Content="ОК" HorizontalAlignment="Left" Width="104" x:Name="btnOKGrant" Margin="761,280,0,0" Height="30" VerticalAlignment="Top" IsEnabled="False" Grid.Column="2" Grid.ColumnSpan="2" Click="btnOKGrant_Click"/>
                         <Label Content="ФИО" HorizontalAlignment="Left" x:Name="Nazv" Margin="621,55,0,0" Width="134" FontSize="12" FontFamily="Times New Roman" Height="26" VerticalAlignment="Top" Grid.Column="2"/>
-                        <TextBox x:Name="nazvUsl" HorizontalAlignment="Left" Width="143" Margin="624,74,0,0" Height="29" VerticalAlignment="Top" IsEnabled="False" Grid.Column="2"/>
+                        <TextBox x:Name="txtBFullName" HorizontalAlignment="Left" Width="143" Margin="624,74,0,0" Height="29" VerticalAlignment="Top" IsEnabled="False" Grid.Column="2"/>
                         <Label Content="Специальность" HorizontalAlignment="Left" x:Name="cena" Width="119" Margin="624,101,0,0" FontSize="12" FontFamily="Times New Roman" Height="27" VerticalAlignment="Top" Grid.Column="2"/>
                         <Label Content="Kурс" HorizontalAlignment="Left" x:Name="razmer" Margin="625,155,0,0" Width="134" FontSize="12" FontFamily="Times New Roman" Height="26" VerticalAlignment="Top" Grid.Column="2"/>
-                        <TextBox x:Name="tb_nalog" HorizontalAlignment="Left" Width="142" Margin="627,179,0,0" Height="29" VerticalAlignment="Top" IsEnabled="False" Grid.Column="2"/>
-                        <TextBox x:Name="Specal" HorizontalAlignment="Left" Width="143" Margin="625,124,0,0" Height="29" VerticalAlignment="Top" IsEnabled="False" Grid.Column="2"/>
-                        <Label Content="Минимальный бал" HorizontalAlignment="Left" x:Name="razmer_Copy" Margin="627,208,0,0" Width="134" FontSize="12" FontFamily="Times New Roman" Height="26" VerticalAlignment="Top" Grid.Column="2"/>
-                        <TextBox x:Name="tb_nalog_Copy" HorizontalAlignment="Left" Width="142" Margin="626,231,0,0" Height="29" VerticalAlignment="Top" IsEnabled="False" Grid.Column="2"/>
-                        <Label Content="Средний балл" HorizontalAlignment="Left" x:Name="Nazv_Copy" Margin="780,54,0,0" Width="134" FontSize="12" FontFamily="Times New Roman" Height="26" VerticalAlignment="Top" Grid.Column="2"/>
-                        <Label Content="Удвоенная степендия" HorizontalAlignment="Left" x:Name="Nazv_Copy1" Margin="781,101,0,0" Width="134" FontSize="12" FontFamily="Times New Roman" Height="26" VerticalAlignment="Top" Grid.Column="2"/>
-                        <TextBox x:Name="nazvUsl_Copy" HorizontalAlignment="Left" Width="143" Margin="775,72,0,0" Height="29" VerticalAlignment="Top" IsEnabled="False" Grid.Column="2"/>
-                        <TextBox x:Name="nazvUsl_Copy1" HorizontalAlignment="Left" Width="143" Margin="776,121,0,0" Height="29" VerticalAlignment="Top" IsEnabled="False" Grid.Column="2"/>
+                        <TextBox x:Name="txtBCourse" HorizontalAlignment="Left" Width="142" Margin="627,179,0,0" Height="29" VerticalAlignment="Top" IsEnabled="False" Grid.Column="2"/>
+                        <TextBox x:Name="txtBSpeciality" HorizontalAlignment="Left" Width="143" Margin="625,124,0,0" Height="29" VerticalAlignment="Top" IsEnabled="False" Grid.Column="2"/>
+                        <Label Content="Минимальный бал" HorizontalAlignment="Left" x:Name="razmer_Copy" Margin="627,0,0,0" Width="134" FontSize="12" FontFamily="Times New Roman" Height="26" VerticalAlignment="Center" Grid.Column="2"/>
+                        <TextBox x:Name="txtBoxMinScore" HorizontalAlignment="Left" Width="142" Margin="626,231,0,0" Height="29" VerticalAlignment="Top" IsEnabled="False" Grid.Column="2"/>
+                        <Label Content="Средний балл" HorizontalAlignment="Left" x:Name="Nazv_Copy" Margin="780,54,0,0" Width="134" FontSize="12" FontFamily="Times New Roman" Height="26" VerticalAlignment="Top" Grid.Column="2" Grid.ColumnSpan="2"/>
+                        <Label Content="Удвоенная степендия" HorizontalAlignment="Left" x:Name="Nazv_Copy1" Margin="781,101,0,0" Width="134" FontSize="12" FontFamily="Times New Roman" Height="26" VerticalAlignment="Top" Grid.Column="2" Grid.ColumnSpan="2"/>
+                        <TextBox x:Name="txtBAverageScore" HorizontalAlignment="Left" Width="143" Margin="775,72,0,0" Height="29" VerticalAlignment="Top" IsEnabled="False" Grid.Column="2" Grid.ColumnSpan="2"/>
+                        <TextBox x:Name="txtBDoubledGrant" HorizontalAlignment="Left" Width="143" Margin="776,121,0,0" Height="29" VerticalAlignment="Top" IsEnabled="False" Grid.Column="2" Grid.ColumnSpan="2"/>
                     </Grid>
                 </TabItem.Content>
             </TabItem>
@@ -59,33 +63,33 @@
                             <ColumnDefinition Width="937*"/>
                             <ColumnDefinition Width="58*"/>
                         </Grid.ColumnDefinitions>
-                        <DataGrid AutoGenerateColumns="False" x:Name="klient" Margin="10,10,0,0" HorizontalAlignment="Left" Width="572" Height="331" VerticalAlignment="Top" IsReadOnly="True" Grid.ColumnSpan="2">
+                        <DataGrid AutoGenerateColumns="False" x:Name="DGStudents" Margin="10,10,0,0" HorizontalAlignment="Left" Width="572" Height="331" VerticalAlignment="Top" IsReadOnly="True" Grid.ColumnSpan="2">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{Binding Student_ID}" Header="ID" Width="25"/>
-                                <DataGridTextColumn Binding="{Binding FIO}" Header="Фамилия" Width="110"/>
-                                <DataGridTextColumn Binding="{Binding Sex}" Header="Пол" Width="60"/>
-                                <DataGridTextColumn Binding="{Binding Kyrs}" Header="Курс" Width="60"/>
-                                <DataGridTextColumn Binding="{Binding ZachNumber}" Header="Номер зачетки" Width="110"/>
-                                <DataGridTextColumn Binding="{Binding Passport}" Header="Группа" Width="80"/>
-                                <DataGridTextColumn Binding="{Binding Form_Study}" Header="Форма обучения" Width="80"/>
+                                <DataGridTextColumn Binding="{Binding Id}" Header="ID" Width="25"/>
+                                <DataGridTextColumn Binding="{Binding FullName}" Header="Фамилия" Width="110"/>
+                                <DataGridTextColumn Binding="{Binding Gender}" Header="Пол" Width="60"/>
+                                <DataGridTextColumn Binding="{Binding Course}" Header="Курс" Width="60"/>
+                                <DataGridTextColumn Binding="{Binding RecordBookNum}" Header="Номер зачетки" Width="110"/>
+                                <DataGridTextColumn Binding="{Binding Group}" Header="Группа" Width="80"/>
+                                <DataGridTextColumn Binding="{Binding EducationForm}" Header="Форма обучения" Width="80"/>
                             </DataGrid.Columns>
                         </DataGrid>
                         <Button Content="Удалить" HorizontalAlignment="Left" Width="89" x:Name="delit" Margin="681,311,0,0" Height="30" VerticalAlignment="Top" Grid.Column="1"  />
-                        <Button Content="Отмена" HorizontalAlignment="Left" Width="104" x:Name="Otm"  Margin="787,308,0,0" Height="30" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1" />
+                        <Button Content="Отмена" Click="btnCancelStudent_Click" HorizontalAlignment="Left" Width="104" x:Name="btnCancelStudent"  Margin="787,308,0,0" Height="30" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1" />
                         <Button Content="Редактировать" HorizontalAlignment="Left" Width="91" x:Name="redak"  Margin="574,312,0,0" Height="30" VerticalAlignment="Top" Grid.Column="1" />
-                        <Button Content="ОК" HorizontalAlignment="Left" Width="81" x:Name="OK"  Margin="902,304,0,0" Height="30" VerticalAlignment="Top" IsEnabled="False" Grid.ColumnSpan="2" Grid.Column="1"/>
-                        <Button Content="Новый Студент" HorizontalAlignment="Left" Width="225" x:Name="klien"  Margin="570,15,0,0" Height="34" VerticalAlignment="Top" Grid.Column="1"/>
+                        <Button Content="ОК" HorizontalAlignment="Left" Click="btnOKStudent_Click" Width="81" x:Name="btnOKStudent"  Margin="902,304,0,0" Height="30" VerticalAlignment="Top" IsEnabled="False" Grid.ColumnSpan="2" Grid.Column="1"/>
+                        <Button Content="Новый Студент" Click="btnAddStudent_Click" HorizontalAlignment="Left" Width="225" x:Name="btnAddStudent"  Margin="570,15,0,0" Height="34" VerticalAlignment="Top" Grid.Column="1"/>
                         <Label Content="ФИО" x:Name="Naz" Margin="571,47,119,0" FontSize="12" FontFamily="Times New Roman" Height="26" VerticalAlignment="Top" Grid.Column="1"/>
-                        <TextBox x:Name="FIO" HorizontalAlignment="Left" Width="198" Margin="574,74,0,0" Height="29" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                        <TextBox x:Name="txtBStudentFullName" HorizontalAlignment="Left" Width="198" Margin="574,74,0,0" Height="29" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
                         <Label Content="Курс" HorizontalAlignment="Left" x:Name="Adr" Width="227" Margin="571,112,0,0" FontSize="12" FontFamily="Times New Roman" Height="26" VerticalAlignment="Top" Grid.Column="1"/>
-                        <TextBox x:Name="Adres" HorizontalAlignment="Left" Width="198" Margin="577,138,0,0" Height="30" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                        <TextBox x:Name="txtBStudentCourse" HorizontalAlignment="Left" Width="198" Margin="577,138,0,0" Height="30" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
                         <Label Content="Номер зачетки" HorizontalAlignment="Left" x:Name="nomer" Width="227" Margin="781,117,-13,0" FontSize="12" FontFamily="Times New Roman" Height="26" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="2"/>
-                        <TextBox x:Name="Nomer" HorizontalAlignment="Left" Width="197" Margin="786,139,0,0" Height="30" VerticalAlignment="Top" IsUndoEnabled="True" IsEnabled="False" Grid.Column="1" Grid.ColumnSpan="2"/>
+                        <TextBox x:Name="txtBStudentRecordNum" HorizontalAlignment="Left" Width="197" Margin="786,139,0,0" Height="30" VerticalAlignment="Top" IsUndoEnabled="True" IsEnabled="False" Grid.Column="1" Grid.ColumnSpan="2"/>
                         <Label Content="Группа" HorizontalAlignment="Left" x:Name="passport" Width="227" Margin="573,178,0,0" FontSize="12" FontFamily="Times New Roman" Height="26" VerticalAlignment="Top" Grid.Column="1"/>
-                        <TextBox x:Name="passport1" HorizontalAlignment="Left" Width="200" Margin="579,203,0,0" Height="30" VerticalAlignment="Top" IsUndoEnabled="True" IsEnabled="False" Grid.Column="1"/>
-                        <TextBox x:Name="FIO2" HorizontalAlignment="Left" Width="200" Margin="787,77,0,0" Height="29" VerticalAlignment="Top" IsEnabled="False" Grid.ColumnSpan="2" Grid.Column="1"/>
+                        <TextBox x:Name="txtBStudentGroup" HorizontalAlignment="Left" Width="200" Margin="579,203,0,0" Height="30" VerticalAlignment="Top" IsUndoEnabled="True" IsEnabled="False" Grid.Column="1"/>
+                        <TextBox x:Name="txtBStudentMale" HorizontalAlignment="Left" Width="200" Margin="787,77,0,0" Height="29" VerticalAlignment="Top" IsEnabled="False" Grid.ColumnSpan="2" Grid.Column="1"/>
                         <Label Content="Пол" x:Name="Naz2" Margin="794,48,-51,0" FontSize="12" FontFamily="Times New Roman" Height="26" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Column="1"/>
-                        <TextBox x:Name="Nomer_Copy" HorizontalAlignment="Left" Width="197" Margin="789,206,0,0" Height="30" VerticalAlignment="Top" IsUndoEnabled="True" IsEnabled="False" Grid.Column="1" Grid.ColumnSpan="2"/>
+                        <TextBox x:Name="txtBStudentEducationForm" HorizontalAlignment="Left" Width="197" Margin="789,206,0,0" Height="30" VerticalAlignment="Top" IsUndoEnabled="True" IsEnabled="False" Grid.Column="1" Grid.ColumnSpan="2"/>
                         <Label Content="Форма обучения" HorizontalAlignment="Left" x:Name="nomer_Copy1" Width="227" Margin="789,181,-21,0" FontSize="12" FontFamily="Times New Roman" Height="26" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="2"/>
                     </Grid>
                 </TabItem.Content>
@@ -107,7 +111,7 @@
                                 <DataGridTextColumn Binding="{Binding Mark}" Header="Оценка" Width="*"/>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <Button Content="Новый Экзамен" Width="243" HorizontalAlignment="Center" Margin="24,13,54,0" x:Name="Novzak" Height="30" VerticalAlignment="Top" Grid.Column="1" RenderTransformOrigin="0.5,0.5">
+                        <Button Content="Новый Экзамен" Click="btnAddExam_Click" Width="243" HorizontalAlignment="Center" Margin="24,13,54,0" x:Name="btnAddExam" Height="30" VerticalAlignment="Top" Grid.Column="1" RenderTransformOrigin="0.5,0.5">
                             <Button.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform/>
@@ -118,15 +122,15 @@
                             </Button.RenderTransform>
                         </Button>
                         <Label Content="Название предмета" FontSize="12" FontFamily="Times New Roman" Margin="639,48,0,0" HorizontalAlignment="Left" Width="121" Height="31" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-                        <TextBox Height="23" TextWrapping="Wrap" Text="" Width="120" Grid.ColumnSpan="2" Margin="646,71,253,266"/>
+                        <TextBox Height="23" Name="txtBExamName" TextWrapping="Wrap" Text="" Width="120" Grid.ColumnSpan="2" Margin="646,71,253,266"/>
                         <Label Content="Дата экзамена" FontSize="12" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="646,106,0,0" Width="113" Height="31" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
                         <Label Content="Преподователь" FontSize="12" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="643,170,0,0" Width="116" Height="33" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-                        <Button Content="ОК" HorizontalAlignment="Left" Width="114" x:Name="ok" Margin="156,285,0,0" Height="31" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
-                        <Button Content="Отмена" HorizontalAlignment="Left" Width="143" x:Name="Otmen" Margin="661,285,0,0" IsEnabled="False" Height="28" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-                        <TextBox Height="23" TextWrapping="Wrap" Text="" Width="120" Grid.ColumnSpan="2" Margin="647,143,252,194"/>
-                        <TextBox Height="23" TextWrapping="Wrap" Text="" Width="120" Grid.ColumnSpan="2" Margin="648,198,251,139"/>
-                        <TextBox Height="23" TextWrapping="Wrap" Text="" Width="120" Margin="109,71,92,266" Grid.Column="1"/>
-                        <TextBox Height="23" TextWrapping="Wrap" Text="" Width="120" Margin="104,146,97,191" Grid.Column="1"/>
+                        <Button Content="ОК" Click="btnOKExams_Click" HorizontalAlignment="Left" Width="114" x:Name="btnOKExams" Margin="156,285,0,0" Height="31" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
+                        <Button Content="Отмена" Click="btnCancelExam_Click" HorizontalAlignment="Left" Width="143" x:Name="btnCancelExam" Margin="661,285,0,0" IsEnabled="False" Height="28" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                        <DatePicker Height="23" Name="dPExamDate" Width="120" Grid.ColumnSpan="2" Margin="647,143,252,194"/>
+                        <TextBox Height="23" Name="txtBExamTeacher" TextWrapping="Wrap" Text="" Width="120" Grid.ColumnSpan="2" Margin="648,198,251,139"/>
+                        <ComboBox Height="23" Name="cmbStudentNames" Width="120" Margin="109,71,92,266" Grid.Column="1"/>
+                        <TextBox Height="23" Name="txtBExamScore" TextWrapping="Wrap" Text="" Width="120" Margin="104,146,97,191" Grid.Column="1"/>
                         <Label Content="Фио студента" FontSize="12" FontFamily="Times New Roman" Margin="105,47,0,0" HorizontalAlignment="Left" Width="121" Height="31" VerticalAlignment="Top" Grid.Column="1"/>
                         <Label Content="Оценка" FontSize="12" FontFamily="Times New Roman" Margin="103,116,0,0" HorizontalAlignment="Left" Width="121" Height="31" VerticalAlignment="Top" Grid.Column="1"/>
                     </Grid>
