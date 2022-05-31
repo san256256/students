@@ -22,60 +22,60 @@ namespace students.DataContexts
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="peregoncevKP")]
-	public partial class StatementDataContext : System.Data.Linq.DataContext
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name= "shashaHelp")]
+	public partial class GrantDataContext : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
 		
     #region Определения метода расширяемости
     partial void OnCreated();
-    partial void InsertStatements(Statements instance);
-    partial void UpdateStatements(Statements instance);
-    partial void DeleteStatements(Statements instance);
+    partial void InsertStatements(Grants instance);
+    partial void UpdateStatements(Grants instance);
+    partial void DeleteStatements(Grants instance);
     #endregion
 		
-		public StatementDataContext() : 
-				base(global::students.Properties.Settings.Default.peregoncevKPConnectionString1, mappingSource)
+		public GrantDataContext() : 
+				base(global::students.Properties.Settings.Default.devConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public StatementDataContext(string connection) : 
+		public GrantDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public StatementDataContext(System.Data.IDbConnection connection) : 
+		public GrantDataContext(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public StatementDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public GrantDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public StatementDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public GrantDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Statements> Statements
+		public System.Data.Linq.Table<Grants> Grants
 		{
 			get
 			{
-				return this.GetTable<Statements>();
+				return this.GetTable<Grants>();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Statements")]
-	public partial class Statements : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Grants")]
+	public partial class Grants : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -114,7 +114,7 @@ namespace students.DataContexts
     partial void OnDoubledGrantChanged();
     #endregion
 		
-		public Statements()
+		public Grants()
 		{
 			OnCreated();
 		}

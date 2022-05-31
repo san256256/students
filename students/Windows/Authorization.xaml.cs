@@ -17,10 +17,10 @@ namespace students.Windows
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            using (var db = new UserDataContext(Properties.Settings.Default.peregoncevKPConnectionString))
+            using (var db = new UserDataContext(Properties.Settings.Default.devConnectionString))
             {
                 var user = db.USERS.FirstOrDefault(u => u.Login == txtBoxLogin.Text
-                && u.password == u.password);
+                                                   && u.password == txtBoxPassword.Text);
 
                 if (user != null)
                 {

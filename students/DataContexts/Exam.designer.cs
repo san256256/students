@@ -22,7 +22,7 @@ namespace students.DataContexts
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="peregoncevKP")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name= "shashaHelp")]
 	public partial class ExamDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -36,7 +36,7 @@ namespace students.DataContexts
     #endregion
 		
 		public ExamDataContext() : 
-				base(global::students.Properties.Settings.Default.peregoncevKPConnectionString1, mappingSource)
+				base(global::students.Properties.Settings.Default.devConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
