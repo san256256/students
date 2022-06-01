@@ -24,6 +24,7 @@ namespace students.Windows
 
                 if (user != null)
                 {
+                    (Application.Current as App).ApplicationUser = user;
                     var mainWnd = new MainWindow();
                     mainWnd.Show();
                     this.Close();
