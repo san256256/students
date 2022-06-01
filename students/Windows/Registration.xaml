@@ -6,33 +6,45 @@
         xmlns:local="clr-namespace:students.Windows"
         xmlns:Collections="clr-namespace:System.Collections;assembly=mscorlib" xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="students.Windows.Registration"
         mc:Ignorable="d"
-        Title="Registration" Height="450" Width="800">
-    <Grid RenderTransformOrigin="0.499,0.476">
+        ResizeMode="NoResize"
+        Title="Registration" Height="450" Width="700" WindowStartupLocation="CenterScreen">
+    <Grid Background="FloralWhite">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="23*"/>
-            <ColumnDefinition Width="57*"/>
-            <ColumnDefinition Width="19*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2.7*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#FFB4CBEC" Offset="0.456"/>
-                <GradientStop Color="#FF7683A0" Offset="0.639"/>
-                <GradientStop Color="#FF8999B0" Offset="0.307"/>
-            </LinearGradientBrush>
-        </Grid.Background>
-        <Label Content="Регистрация" HorizontalAlignment="Left" Margin="87,32,0,0" VerticalAlignment="Top" FontSize="25" FontWeight="Bold" Grid.Column="1"/>
-        <Label Content="Ваш логин для входа" HorizontalAlignment="Left" Margin="22,178,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" RenderTransformOrigin="1.24,0.549" Grid.ColumnSpan="2"/>
-        <Label Content="Ваш пароль для входа" HorizontalAlignment="Left" Margin="22,234,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" RenderTransformOrigin="0.153,0.548" Grid.ColumnSpan="2"/>
-        <Button Content="Зарегистрировать" HorizontalAlignment="Left" Margin="108,317,0,0" VerticalAlignment="Top" Width="368" FontSize="20" FontWeight="Bold" Height="37" Click="Button_Click_1" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="login" HorizontalAlignment="Left" Height="34" Margin="104,178,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="321" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="Password" HorizontalAlignment="Left" Height="34" Margin="104,234,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="321" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <ComboBox x:Name="cmbRole" Grid.Column="1" Margin="238,273,35,98">
-            <System:String>админ</System:String>
-            <System:String>пользователь</System:String>
-        </ComboBox>
-        <Label Content="Как вас зовут" HorizontalAlignment="Left" Margin="22,118,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" RenderTransformOrigin="1.24,0.549" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="FIO" HorizontalAlignment="Left" Height="34" Margin="34,118,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="391" RenderTransformOrigin="0.475,-1.618" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <Button Content="Вернуться назад" HorizontalAlignment="Left" Margin="10,365,0,0" VerticalAlignment="Top" Width="279" FontSize="20" FontWeight="Bold" Height="37" Grid.Column="1" Click="Button_Click"/>
-        <Label Content="Роль" HorizontalAlignment="Left" Margin="168,266,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" RenderTransformOrigin="0.153,0.548" Grid.Column="1"/>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Content="Регистрация" FontSize="25" FontWeight="ExtraBold" FontFamily="Blackadder ITC"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+            <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                <Label Content="Как вас зовут" FontSize="18" FontWeight="Bold"/>
+                <TextBox x:Name="FIO" Margin="5 0 5 0"
+                         Height="20"/>
+                <Label Content="Ваш логин для входа" FontSize="18" FontWeight="Bold" />
+                <TextBox x:Name="login" Margin="5 0 5 0"
+                         Height="20"/>
+                <Label Content="Ваш пароль для входа" FontSize="18" FontWeight="Bold"/>
+                <TextBox x:Name="Password" Margin="5 0 5 0"
+                         Height="20"/>
+                <Label Content="Роль" FontSize="18" FontWeight="Bold" />
+                <ComboBox x:Name="cmbRole" Margin="5 0 5 0"
+                          Height="20">
+                    <System:String>админ</System:String>
+                    <System:String>пользователь</System:String>
+                </ComboBox>                
+                <Button Content="Зарегистрировать" Margin="100 10 100 10"
+                        FontSize="20" FontWeight="Bold"  Click="Button_Click_1" />
+                <Button Content="Вернуться назад" Margin="100 10 100 10"
+                        FontSize="20" FontWeight="Bold" Click="Button_Click"/>
+            </StackPanel>
+            
+        </Grid>
     </Grid>
 </Window>

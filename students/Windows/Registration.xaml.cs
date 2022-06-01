@@ -1,17 +1,6 @@
 ﻿using students.DataContexts;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace students.Windows
 {
@@ -98,7 +87,7 @@ namespace students.Windows
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Registration authorization = new Registration();
+            var authorization = new Authorization();
             authorization.Show();
             Close();
         }

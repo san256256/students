@@ -5,26 +5,81 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:students.Windows"
         mc:Ignorable="d"
-        Title="Window1" Height="486" Width="1076.804">
-    <Grid Margin="0,0,12,0">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="646*"/>
-            <ColumnDefinition Width="369*"/>
-        </Grid.ColumnDefinitions>
-        <TabControl x:Name="products" Margin="2,10,-12,-11" RenderTransformOrigin="0.519,0.505" Background="#FFDFE1E6" Grid.ColumnSpan="2">
-            <TabItem x:Name="smartphonesTab" Header="Степендия">
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Title="Учёт стипендий" Height="560" Width="1100" Background="Aquamarine">
+    <Grid>
+        <TabControl x:Name="products" Background="FloralWhite">
+
+            <TabItem x:Name="tabItemQueries" Header="Запросы">
                 <TabItem.Content>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="7*"/>
-                            <ColumnDefinition Width="41*"/>
-                            <ColumnDefinition Width="403*"/>
-                            <ColumnDefinition Width="84*"/>
+                            <ColumnDefinition Width="0.3*"/>
+                            <ColumnDefinition Width="0.7*"/>
                         </Grid.ColumnDefinitions>
-                        <DataGrid AutoGenerateColumns="false" x:Name="DGStatements" 
-                                  Margin="10,10,0,0" HorizontalAlignment="Left" 
-                                  Width="701" Height="312" VerticalAlignment="Top" 
-                                  IsReadOnly="True" Grid.ColumnSpan="3">
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition Height="0.4*"/>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel>
+                                <Label Content="Выборка по дате"/>
+                                <DatePicker Name="dPQueries" Focusable="False" />
+                                <Button Content="ОК" x:Name="btnQueryDate"                                        
+                                        Click="btnQueryDate_Click"
+                                        Margin="30 10 30 10"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1">
+                                <Label Content="Выборка по студенту" />
+                                <ComboBox Name="cmbQueriesStudents" />
+                                <Button Content="ОК" 
+                                        Margin="30 10 30 10"
+                                        Click="btnQueryStudent_Click" x:Name="btnQueryStudent" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="2">
+                                <Label Content="Выборка по предмету" />
+                                <ComboBox Name="cmbQueriesExamNames" />
+                                <Button Content="ОК" 
+                                        Margin="30 10 30 10"
+                                        Click="btnQueryExamName_Click" x:Name="btnQueryExamName" />
+                            </StackPanel>
+
+                            <Button Grid.Row="3" 
+                                    Margin="10"
+                                    Content="Отчет" 
+                                    Click="btnExcelReport_Click" x:Name="btnExcelReport" />
+                        </Grid>
+
+                        <DataGrid AutoGenerateColumns="False" x:Name="DGQuery" IsReadOnly="True" Grid.Column="1">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Id}" Header="Номер экзамена" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding Name}" Header="Предмет" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding Date}" Header="Дата" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding StudentFullName}" Header="ФИО студента" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding Score}" Header="Оценка" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding Teacher}" Header="Учитель" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem x:Name="tabItemGrants" Header="Стипендия">
+                <TabItem.Content>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.6*"/>
+                            <ColumnDefinition Width="0.4*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <DataGrid AutoGenerateColumns="false" x:Name="DGGrants"
+                                  IsReadOnly="True">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Id}" Header="Код" Width="60"/>
                                 <DataGridTextColumn Binding="{Binding FullName}" Header="ФИО" Width="*"/>
@@ -32,38 +87,69 @@
                                 <DataGridTextColumn Binding="{Binding Course}" Header="Курс" Width="50"/>
                                 <DataGridTextColumn Binding="{Binding MinScore}" Header="Мин.Балл" Width="70"/>
                                 <DataGridTextColumn Binding="{Binding AverageScore}" Header="Средний Балл" Width="*"/>
-                                <DataGridTextColumn Binding="{Binding DoubledGrant}" Header="Удвоенная степендия" Width="*"/>
+                                <DataGridCheckBoxColumn Binding="{Binding DoubledGrant}" Header="Удвоенная степендия" Width="*"/>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <Button Content="Удалить" HorizontalAlignment="Left" Width="101" x:Name="btnDeleteGrant"  Margin="761,318,0,0" Height="30" VerticalAlignment="Top" Grid.Column="2" Grid.ColumnSpan="2"  />
-                        <Button Content="Отмена" HorizontalAlignment="Left" Click="btnCancelGrant_Click" Width="104" x:Name="btnCancelGrant" Margin="638,278,0,0" Height="30" VerticalAlignment="Top" IsEnabled="False" Grid.Column="2" />
-                        <Button Content="Редактировать" HorizontalAlignment="Left" Width="101" x:Name="btnEditGrant"  Margin="642,321,0,0" Height="30" VerticalAlignment="Top" Grid.Column="2" />
-                        <Button Content="Добавить" HorizontalAlignment="Right" Width="243" x:Name="btnAddGrant"  Margin="0,13,57,303" Grid.Column="2" Grid.ColumnSpan="2" Click="btnAddGrant_Click"/>
-                        <Button Content="ОК" HorizontalAlignment="Left" Width="104" x:Name="btnOKGrant" Margin="761,280,0,0" Height="30" VerticalAlignment="Top" IsEnabled="False" Grid.Column="2" Grid.ColumnSpan="2" Click="btnOKGrant_Click"/>
-                        <Label Content="ФИО" HorizontalAlignment="Left" x:Name="Nazv" Margin="621,55,0,0" Width="134" FontSize="12" FontFamily="Times New Roman" Height="26" VerticalAlignment="Top" Grid.Column="2"/>
-                        <TextBox x:Name="txtBFullName" HorizontalAlignment="Left" Width="143" Margin="624,74,0,0" Height="29" VerticalAlignment="Top" IsEnabled="False" Grid.Column="2"/>
-                        <Label Content="Специальность" HorizontalAlignment="Left" x:Name="cena" Width="119" Margin="624,101,0,0" FontSize="12" FontFamily="Times New Roman" Height="27" VerticalAlignment="Top" Grid.Column="2"/>
-                        <Label Content="Kурс" HorizontalAlignment="Left" x:Name="razmer" Margin="625,155,0,0" Width="134" FontSize="12" FontFamily="Times New Roman" Height="26" VerticalAlignment="Top" Grid.Column="2"/>
-                        <TextBox x:Name="txtBCourse" HorizontalAlignment="Left" Width="142" Margin="627,179,0,0" Height="29" VerticalAlignment="Top" IsEnabled="False" Grid.Column="2"/>
-                        <TextBox x:Name="txtBSpeciality" HorizontalAlignment="Left" Width="143" Margin="625,124,0,0" Height="29" VerticalAlignment="Top" IsEnabled="False" Grid.Column="2"/>
-                        <Label Content="Минимальный бал" HorizontalAlignment="Left" x:Name="razmer_Copy" Margin="627,0,0,0" Width="134" FontSize="12" FontFamily="Times New Roman" Height="26" VerticalAlignment="Center" Grid.Column="2"/>
-                        <TextBox x:Name="txtBoxMinScore" HorizontalAlignment="Left" Width="142" Margin="626,231,0,0" Height="29" VerticalAlignment="Top" IsEnabled="False" Grid.Column="2"/>
-                        <Label Content="Средний балл" HorizontalAlignment="Left" x:Name="Nazv_Copy" Margin="780,54,0,0" Width="134" FontSize="12" FontFamily="Times New Roman" Height="26" VerticalAlignment="Top" Grid.Column="2" Grid.ColumnSpan="2"/>
-                        <Label Content="Удвоенная степендия" HorizontalAlignment="Left" x:Name="Nazv_Copy1" Margin="781,101,0,0" Width="134" FontSize="12" FontFamily="Times New Roman" Height="26" VerticalAlignment="Top" Grid.Column="2" Grid.ColumnSpan="2"/>
-                        <TextBox x:Name="txtBAverageScore" HorizontalAlignment="Left" Width="143" Margin="775,72,0,0" Height="29" VerticalAlignment="Top" IsEnabled="False" Grid.Column="2" Grid.ColumnSpan="2"/>
-                        <TextBox x:Name="txtBDoubledGrant" HorizontalAlignment="Left" Width="143" Margin="776,121,0,0" Height="29" VerticalAlignment="Top" IsEnabled="False" Grid.Column="2" Grid.ColumnSpan="2"/>
+                        
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.15*"/>
+                                <RowDefinition Height="0.7*"/>
+                                <RowDefinition Height="0.2*"/>
+                            </Grid.RowDefinitions>
+
+                            <Button Content="Добавить" x:Name="btnAddGrant" Click="btnAddGrant_Click"
+                                    Margin="5"/>
+                            <UniformGrid Columns="2" Grid.Row="1">
+                                <StackPanel Margin="3">                                    
+                                    <Label Content="ФИО" />
+                                    <TextBox x:Name="txtBFullName" IsEnabled="False"/>
+                                    <Label Content="Специальность"/>
+                                    <TextBox x:Name="txtBSpeciality" IsEnabled="False"/>
+                                    <Label Content="Kурс" />
+                                    <TextBox x:Name="txtBCourse" 
+                                             PreviewTextInput="OnlyDigits"
+                                             IsEnabled="False" />
+                                </StackPanel>
+
+                                <StackPanel Margin="3">
+                                    <Label Content="Минимальный бал" />
+                                    <TextBox x:Name="txtBoxMinScore" IsEnabled="False"
+                                             PreviewTextInput="OnlyDigits"/>
+                                    <Label Content="Средний балл" />
+                                    <TextBox x:Name="txtBAverageScore" 
+                                             PreviewTextInput="OnlyDigitsWithComma"
+                                             IsEnabled="False" />
+                                    <Label Content="Удвоенная степендия" />
+                                    <CheckBox x:Name="checkBoxIsDoubledGrant" IsEnabled="False" />
+                                </StackPanel>
+                            </UniformGrid>
+
+                            <UniformGrid Grid.Row="2" Columns="4">
+                                <Button Content="Редактировать" FontSize="12" Click="btnEditGrant_Click" 
+                                        x:Name="btnEditGrant" Margin="8"/>
+                                <Button Content="Удалить" Click="btnDeleteGrant_Click" 
+                                        x:Name="btnDeleteGrant" Margin="8"/>
+                                <Button Content="Отмена" Click="btnCancelGrant_Click" 
+                                        x:Name="btnCancelGrant" IsEnabled="False" Margin="8" />
+                                <Button Content="ОК" x:Name="btnOKGrant"
+                                        Margin="8" IsEnabled="False" 
+                                        Click="btnOKGrant_Click"/>
+                            </UniformGrid>
+                        </Grid>
+                        
                     </Grid>
                 </TabItem.Content>
             </TabItem>
-            <TabItem x:Name="tabletsTab" Header="Студенты">
+            <TabItem x:Name="tabItemStudents" Header="Студенты">
                 <TabItem.Content>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="24*"/>
-                            <ColumnDefinition Width="937*"/>
-                            <ColumnDefinition Width="58*"/>
+                            <ColumnDefinition Width="0.6*"/>
+                            <ColumnDefinition Width="0.4*"/>
                         </Grid.ColumnDefinitions>
-                        <DataGrid AutoGenerateColumns="False" x:Name="DGStudents" Margin="10,10,0,0" HorizontalAlignment="Left" Width="572" Height="331" VerticalAlignment="Top" IsReadOnly="True" Grid.ColumnSpan="2">
+                        
+                        <DataGrid AutoGenerateColumns="False" x:Name="DGStudents" IsReadOnly="True">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Id}" Header="ID" Width="25"/>
                                 <DataGridTextColumn Binding="{Binding FullName}" Header="Фамилия" Width="110"/>
@@ -74,98 +160,116 @@
                                 <DataGridTextColumn Binding="{Binding EducationForm}" Header="Форма обучения" Width="80"/>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <Button Content="Удалить" HorizontalAlignment="Left" Width="89" x:Name="delit" Margin="681,311,0,0" Height="30" VerticalAlignment="Top" Grid.Column="1"  />
-                        <Button Content="Отмена" Click="btnCancelStudent_Click" HorizontalAlignment="Left" Width="104" x:Name="btnCancelStudent"  Margin="787,308,0,0" Height="30" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1" />
-                        <Button Content="Редактировать" HorizontalAlignment="Left" Width="91" x:Name="redak"  Margin="574,312,0,0" Height="30" VerticalAlignment="Top" Grid.Column="1" />
-                        <Button Content="ОК" HorizontalAlignment="Left" Click="btnOKStudent_Click" Width="81" x:Name="btnOKStudent"  Margin="902,304,0,0" Height="30" VerticalAlignment="Top" IsEnabled="False" Grid.ColumnSpan="2" Grid.Column="1"/>
-                        <Button Content="Новый Студент" Click="btnAddStudent_Click" HorizontalAlignment="Left" Width="225" x:Name="btnAddStudent"  Margin="570,15,0,0" Height="34" VerticalAlignment="Top" Grid.Column="1"/>
-                        <Label Content="ФИО" x:Name="Naz" Margin="571,47,119,0" FontSize="12" FontFamily="Times New Roman" Height="26" VerticalAlignment="Top" Grid.Column="1"/>
-                        <TextBox x:Name="txtBStudentFullName" HorizontalAlignment="Left" Width="198" Margin="574,74,0,0" Height="29" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
-                        <Label Content="Курс" HorizontalAlignment="Left" x:Name="Adr" Width="227" Margin="571,112,0,0" FontSize="12" FontFamily="Times New Roman" Height="26" VerticalAlignment="Top" Grid.Column="1"/>
-                        <TextBox x:Name="txtBStudentCourse" HorizontalAlignment="Left" Width="198" Margin="577,138,0,0" Height="30" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
-                        <Label Content="Номер зачетки" HorizontalAlignment="Left" x:Name="nomer" Width="227" Margin="781,117,-13,0" FontSize="12" FontFamily="Times New Roman" Height="26" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="2"/>
-                        <TextBox x:Name="txtBStudentRecordNum" HorizontalAlignment="Left" Width="197" Margin="786,139,0,0" Height="30" VerticalAlignment="Top" IsUndoEnabled="True" IsEnabled="False" Grid.Column="1" Grid.ColumnSpan="2"/>
-                        <Label Content="Группа" HorizontalAlignment="Left" x:Name="passport" Width="227" Margin="573,178,0,0" FontSize="12" FontFamily="Times New Roman" Height="26" VerticalAlignment="Top" Grid.Column="1"/>
-                        <TextBox x:Name="txtBStudentGroup" HorizontalAlignment="Left" Width="200" Margin="579,203,0,0" Height="30" VerticalAlignment="Top" IsUndoEnabled="True" IsEnabled="False" Grid.Column="1"/>
-                        <TextBox x:Name="txtBStudentMale" HorizontalAlignment="Left" Width="200" Margin="787,77,0,0" Height="29" VerticalAlignment="Top" IsEnabled="False" Grid.ColumnSpan="2" Grid.Column="1"/>
-                        <Label Content="Пол" x:Name="Naz2" Margin="794,48,-51,0" FontSize="12" FontFamily="Times New Roman" Height="26" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Column="1"/>
-                        <TextBox x:Name="txtBStudentEducationForm" HorizontalAlignment="Left" Width="197" Margin="789,206,0,0" Height="30" VerticalAlignment="Top" IsUndoEnabled="True" IsEnabled="False" Grid.Column="1" Grid.ColumnSpan="2"/>
-                        <Label Content="Форма обучения" HorizontalAlignment="Left" x:Name="nomer_Copy1" Width="227" Margin="789,181,-21,0" FontSize="12" FontFamily="Times New Roman" Height="26" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="2"/>
-                    </Grid>
-                </TabItem.Content>
-            </TabItem>
-            <TabItem x:Name="Zakaz" Header="Список экзаменов">
-                <TabItem.Content>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="471*"/>
-                            <ColumnDefinition Width="217*"/>
-                        </Grid.ColumnDefinitions>
-                        <DataGrid AutoGenerateColumns="False" x:Name="zakaza" Margin="10,10,0,0" HorizontalAlignment="Left" Width="615" Height="319" VerticalAlignment="Top" IsReadOnly="True">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{Binding NumbEx}" Header="Код предмета" Width="*"/>
-                                <DataGridTextColumn Binding="{Binding DataEx}" Header="Дата экзамена" Width="*"/>
-                                <DataGridTextColumn Binding="{Binding Predmet}" Header="Название предмета" Width="*"/>
-                                <DataGridTextColumn Binding="{Binding Prepodovatel}" Header="Преподователь" Width="*"/>
-                                <DataGridTextColumn Binding="{Binding FioStydEx}" Header="Фио студента" Width="*"/>
-                                <DataGridTextColumn Binding="{Binding Mark}" Header="Оценка" Width="*"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                        <Button Content="Новый Экзамен" Click="btnAddExam_Click" Width="243" HorizontalAlignment="Center" Margin="24,13,54,0" x:Name="btnAddExam" Height="30" VerticalAlignment="Top" Grid.Column="1" RenderTransformOrigin="0.5,0.5">
-                            <Button.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform/>
-                                    <SkewTransform/>
-                                    <RotateTransform Angle="-0.052"/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </Button.RenderTransform>
-                        </Button>
-                        <Label Content="Название предмета" FontSize="12" FontFamily="Times New Roman" Margin="639,48,0,0" HorizontalAlignment="Left" Width="121" Height="31" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-                        <TextBox Height="23" Name="txtBExamName" TextWrapping="Wrap" Text="" Width="120" Grid.ColumnSpan="2" Margin="646,71,253,266"/>
-                        <Label Content="Дата экзамена" FontSize="12" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="646,106,0,0" Width="113" Height="31" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-                        <Label Content="Преподователь" FontSize="12" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="643,170,0,0" Width="116" Height="33" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-                        <Button Content="ОК" Click="btnOKExams_Click" HorizontalAlignment="Left" Width="114" x:Name="btnOKExams" Margin="156,285,0,0" Height="31" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1"/>
-                        <Button Content="Отмена" Click="btnCancelExam_Click" HorizontalAlignment="Left" Width="143" x:Name="btnCancelExam" Margin="661,285,0,0" IsEnabled="False" Height="28" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-                        <DatePicker Height="23" Name="dPExamDate" Width="120" Grid.ColumnSpan="2" Margin="647,143,252,194"/>
-                        <TextBox Height="23" Name="txtBExamTeacher" TextWrapping="Wrap" Text="" Width="120" Grid.ColumnSpan="2" Margin="648,198,251,139"/>
-                        <ComboBox Height="23" Name="cmbStudentNames" Width="120" Margin="109,71,92,266" Grid.Column="1"/>
-                        <TextBox Height="23" Name="txtBExamScore" TextWrapping="Wrap" Text="" Width="120" Margin="104,146,97,191" Grid.Column="1"/>
-                        <Label Content="Фио студента" FontSize="12" FontFamily="Times New Roman" Margin="105,47,0,0" HorizontalAlignment="Left" Width="121" Height="31" VerticalAlignment="Top" Grid.Column="1"/>
-                        <Label Content="Оценка" FontSize="12" FontFamily="Times New Roman" Margin="103,116,0,0" HorizontalAlignment="Left" Width="121" Height="31" VerticalAlignment="Top" Grid.Column="1"/>
-                    </Grid>
-                </TabItem.Content>
-            </TabItem>
-            <TabItem x:Name="Zapr" Header="Запросы">
-                <TabItem.Content>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="27*"/>
-                            <ColumnDefinition Width="103*"/>
-                            <ColumnDefinition Width="558*"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Content="Выборка по дате" HorizontalAlignment="Left" Margin="4.557,10,0,0" Width="134" Height="28" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Column="1"/>
-                        <DatePicker Name="datePicker2" IsDropDownOpen="True" SelectedDateFormat="Short" Margin="11,38,0,0" HorizontalAlignment="Left" Width="190" Height="26" VerticalAlignment="Top" Grid.ColumnSpan="3"/>
-                        <Button Content="ОК" HorizontalAlignment="Left" Width="65" x:Name="oki" Margin="6,80,0,0" Height="30" VerticalAlignment="Top" Grid.Column="2"/>
-                        <Label Content="Выборка по налогу" HorizontalAlignment="Left" Width="134" Margin="4.557,127,0,0" Height="32" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Column="1"/>
-                        <ComboBox Name="viborusl" Width="169" HorizontalAlignment="Left" Margin="11,159,0,0" Height="26" VerticalAlignment="Top" Grid.ColumnSpan="3"/>
-                        <Button Content="ОК" HorizontalAlignment="Left" Width="65" x:Name="okk" Margin="6,196,0,0" Height="30" VerticalAlignment="Top" Grid.Column="2"/>
-                        <Label Content="Выборка по клиенту" HorizontalAlignment="Left" Width="146" Margin="4.557,239,0,0" Height="32" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Column="1"/>
-                        <Button Content="ОК" HorizontalAlignment="Left" Width="56" x:Name="okkk" Margin="15,308,0,0" Height="26" VerticalAlignment="Top" Grid.Column="2" />
-                        <ComboBox Name="viborpo" Width="163" HorizontalAlignment="Left" Margin="17,271,0,0" Height="26" VerticalAlignment="Top" Grid.ColumnSpan="3" />
-                        <DataGrid AutoGenerateColumns="False" x:Name="zapros" Margin="97,10,0,0" HorizontalAlignment="Left" Width="710" Height="324" VerticalAlignment="Top" IsReadOnly="True" Grid.Column="2">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{Binding Id}" Header="ID налога" Width="*"/>
-                                <DataGridTextColumn Binding="{Binding Nazvanie}" Header="Название налога" Width="*"/>
-                                <DataGridTextColumn Binding="{Binding Data}" Header="Дата" Width="*"/>
-                                <DataGridTextColumn Binding="{Binding OkazYSL}" Header="Статус налога" Width="*"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </Grid>
-                </TabItem.Content>
-            </TabItem>
-            <Label Content="Номер" HorizontalAlignment="Left" x:Name="nomer_Copy" Width="227" FontSize="12" FontFamily="Times New Roman" Height="26" VerticalAlignment="Top"/>
 
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.15*"/>
+                                <RowDefinition Height="0.7*"/>
+                                <RowDefinition Height="0.2*"/>
+                            </Grid.RowDefinitions>
+
+                            <Button Content="Новый Студент" Click="btnAddStudent_Click" x:Name="btnAddStudent"
+                                    Margin="5"/>
+
+                            <UniformGrid Columns="2" Grid.Row="1">
+                                <StackPanel Margin="3">
+                                    <Label Content="ФИО"/>
+                                    <TextBox x:Name="txtBStudentFullName" IsEnabled="False" />
+                                    <Label Content="Курс" />
+                                    <TextBox x:Name="txtBStudentCourse" 
+                                             PreviewTextInput="OnlyDigits"
+                                             IsEnabled="False" />
+                                    <Label Content="Номер зачетки" />
+                                    <TextBox x:Name="txtBStudentRecordNum" 
+                                             PreviewTextInput="OnlyDigits"
+                                             IsEnabled="False" />
+                                </StackPanel>
+
+                                <StackPanel Margin="3">
+                                    <Label Content="Группа"/>
+                                    <TextBox x:Name="txtBStudentGroup" IsEnabled="False" />
+                                    <Label Content="Пол" />
+                                    <TextBox x:Name="txtBStudentGender" IsEnabled="False" />
+                                    <Label Content="Форма обучения" />
+                                    <TextBox x:Name="txtBStudentEducationForm" IsEnabled="False" />
+                                </StackPanel>
+                            </UniformGrid>
+
+                            <UniformGrid Grid.Row="2" Columns="4">
+                                <Button Content="Редактировать" Click="btnEditStudent_Click" x:Name="btnEditStudent" 
+                                        Margin="8" 
+                                        FontSize="12"/>
+                                <Button Content="Удалить" Click="btnDeleteStudent_Click" x:Name="btnDeleteStudent"
+                                        Margin="8"/>
+                                <Button Content="Отмена" Click="btnCancelStudent_Click" x:Name="btnCancelStudent" IsEnabled="False"
+                                        Margin="8"/>
+                                <Button Content="ОК" Click="btnOKStudent_Click" x:Name="btnOKStudent" IsEnabled="False"
+                                        Margin="8"/>
+                            </UniformGrid>
+
+                        </Grid>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem x:Name="tabItemExams" Header="Список экзаменов">
+                <TabItem.Content>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.6*"/>
+                            <ColumnDefinition Width="0.4*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <DataGrid AutoGenerateColumns="False" x:Name="DGExams" IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Id}" Header="Код предмета" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding Date}" Header="Дата экзамена" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding Name}" Header="Название предмета" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding Teacher}" Header="Преподователь" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding StudentFullName}" Header="Фио студента" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding Score}" Header="Оценка" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.15*"/>
+                                <RowDefinition Height="0.7*"/>
+                                <RowDefinition Height="0.2*"/>
+                            </Grid.RowDefinitions>
+
+                            <Button Content="Новый Экзамен" Click="btnAddExam_Click" x:Name="btnAddExam"
+                                    Margin="5"/>
+
+                            <UniformGrid Columns="2" Grid.Row="1">
+                                <StackPanel Margin="3">
+                                    <Label Content="Название предмета" />
+                                    <TextBox Name="txtBExamName" IsEnabled="False" />
+                                    <Label Content="Дата экзамена" />
+                                    <DatePicker Focusable="False" IsEnabled="False" Name="dPExamDate" />
+                                    <Label Content="Преподователь" />
+                                    <TextBox Name="txtBExamTeacher" IsEnabled="False"/>
+                                </StackPanel>
+
+                                <StackPanel Margin="3">
+                                    <Label Content="Оценка" />
+                                    <TextBox Name="txtBExamScore" 
+                                             PreviewTextInput="OnlyDigits"
+                                             IsEnabled="False"/>
+                                    <Label Content="Фио студента" />
+                                    <ComboBox IsEnabled="False" Name="cmbStudentNames"/>
+                                </StackPanel>
+                            </UniformGrid>
+
+                            <UniformGrid Grid.Row="2" Columns="4">
+                                <Button Content="Редактировать" Click="btnEditExam_Click" x:Name="btnEditExam" Margin="8" FontSize="12" />
+                                <Button Content="Удалить" Click="btnDeleteExam_Click" x:Name="btnDeleteExam" Margin="8" />
+                                <Button Content="Отмена" Click="btnCancelExam_Click" x:Name="btnCancelExam" IsEnabled="False" Margin="8" />
+                                <Button Content="ОК" Click="btnOKExams_Click" x:Name="btnOKExams" IsEnabled="False" Margin="8"/>
+                            </UniformGrid>
+                        </Grid>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>

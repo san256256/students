@@ -47,5 +47,25 @@ namespace students.Properties {
                 this["devConnectionString"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-1G0OJRF;Initial Catalog=shashaHelp;Integrated Security=True")]
+        public string shashaHelpConnectionString {
+            get {
+                return ((string)(this["shashaHelpConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=wsr;Initial Catalog=peregoncevKP;User ID=peregoncevKP")]
+        public string peregoncevKPConnectionString1 {
+            get {
+                return ((string)(this["peregoncevKPConnectionString1"]));
+            }
+        }
     }
 }

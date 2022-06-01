@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Grant">
+  <DataContextMoniker Name="/GrantDataContext" />
+  <nestedChildShapes>
+    <classShape Id="b2494ae6-d31f-47ef-ace7-beb1f5d5b1d3" absoluteBounds="3.625, 2.625, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/GrantDataContext/Grant" />
+      <nestedChildShapes>
+        <elementListCompartment Id="834b5712-0827-44ca-bd81-4ab79d5f35c1" absoluteBounds="3.64, 3.085, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

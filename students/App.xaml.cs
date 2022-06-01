@@ -1,4 +1,5 @@
-﻿using System;
+﻿using students.DataContexts;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,6 @@ namespace students
     /// </summary>
     public partial class App : Application
     {
+        public USERS ApplicationUser { get; set; }
     }
 }
